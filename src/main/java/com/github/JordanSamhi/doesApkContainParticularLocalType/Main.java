@@ -3,6 +3,8 @@ package com.github.JordanSamhi.doesApkContainParticularLocalType;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.JordanSamhi.doesApkContainParticularLocalType.Utils.CommandLineOptions;
+
 import soot.Local;
 import soot.PackManager;
 import soot.Scene;
@@ -13,10 +15,14 @@ import soot.options.Options;
 public class Main {
 
 	public static void main(String[] args) {
+
+		CommandLineOptions options = new CommandLineOptions(args);
+
 		List<String> apk = new ArrayList<String>();
-		apk.add(args[0]);
-		
-		String androidJarPAth = "";
+		apk.add(options.getApk());
+
+		String androidJarPAth = options.getPlatforms();
+		String type = options.getType();
 
 		soot.G.reset();
 		Options.v().set_allow_phantom_refs(true);
@@ -31,13 +37,15 @@ public class Main {
 			for(SootMethod sm : sc.getMethods()) {
 				if(sm.hasActiveBody()) {
 					for (Local l : sm.getActiveBody().getLocals()) {
-						if(l.getType().toString().equals("android.app.AlarmManager")) {
+						if(l.getType().toString().equals(type)) {
+							System.out.println("[+] Apk contains " + type);
 							System.exit(1);
 						}
 					}
 				}
 			}
 		}
+		System.out.println("[!] Apk does not contain " + type);
 		System.exit(0);
 	}
 }
