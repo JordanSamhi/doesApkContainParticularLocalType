@@ -1,5 +1,7 @@
 package com.github.JordanSamhi.doesApkContainParticularLocalType;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.github.JordanSamhi.doesApkContainParticularLocalType.Utils.CommandLineOptions;
 import soot.Local;
 import soot.Scene;
@@ -9,6 +11,8 @@ import soot.jimple.infoflow.android.InfoflowAndroidConfiguration;
 import soot.jimple.infoflow.android.SetupApplication;
 
 public class Main {
+
+	private static Logger logger = LoggerFactory.getLogger(Main.class);
 
 	public static void main(String[] args) {
 
@@ -31,14 +35,14 @@ public class Main {
 				if(sm.hasActiveBody()) {
 					for (Local l : sm.getActiveBody().getLocals()) {
 						if(l.getType().toString().equals(type)) {
-							System.out.println("[+] Apk contains " + type);
+							logger.info("Apk contains " + type);
 							System.exit(1);
 						}
 					}
 				}
 			}
 		}
-		System.out.println("[!] Apk does not contain " + type);
+		logger.warn("Apk does not contain " + type);
 		System.exit(0);
 	}
 }
