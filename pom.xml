@@ -6,7 +6,7 @@
 	<groupId>com.github.JordanSamhi.doesapkcontainparticularlocaltype</groupId>
 	<artifactId>doesapkcontainparticularlocaltype</artifactId>
 	<name>doesapkcontainparticularlocaltype</name>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -86,6 +86,16 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-ext</artifactId>
 			<version>1.7.26</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tud.sse</groupId>
+			<artifactId>soot-infoflow</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tud.sse</groupId>
+			<artifactId>soot-infoflow-android</artifactId>
+			<version>2.7.1</version>
 		</dependency>
 	</dependencies>
 </project>

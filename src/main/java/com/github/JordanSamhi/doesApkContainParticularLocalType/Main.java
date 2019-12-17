@@ -1,16 +1,12 @@
 package com.github.JordanSamhi.doesApkContainParticularLocalType;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.JordanSamhi.doesApkContainParticularLocalType.Utils.CommandLineOptions;
-
 import soot.Local;
-import soot.PackManager;
 import soot.Scene;
 import soot.SootClass;
 import soot.SootMethod;
-import soot.options.Options;
+import soot.jimple.infoflow.android.InfoflowAndroidConfiguration;
+import soot.jimple.infoflow.android.SetupApplication;
 
 public class Main {
 
@@ -18,20 +14,17 @@ public class Main {
 
 		CommandLineOptions options = new CommandLineOptions(args);
 
-		List<String> apk = new ArrayList<String>();
-		apk.add(options.getApk());
-
-		String androidJarPAth = options.getPlatforms();
+		String apk = options.getApk();
+		String platforms = options.getPlatforms();
 		String type = options.getType();
 
-		soot.G.reset();
-		Options.v().set_allow_phantom_refs(true);
-		Options.v().set_force_android_jar(androidJarPAth);
-		Options.v().set_src_prec(Options.src_prec_apk);
-		Options.v().set_process_dir(apk);
-		Scene.v().loadNecessaryClasses();
-		Options.v().set_output_format(Options.output_format_none);
-		PackManager.v().runPacks();
+		InfoflowAndroidConfiguration ifac = new InfoflowAndroidConfiguration();
+		ifac.setIgnoreFlowsInSystemPackages(false);
+		SetupApplication sa = null;
+		ifac.getAnalysisFileConfig().setAndroidPlatformDir(platforms);
+		ifac.getAnalysisFileConfig().setTargetAPKFile(apk);
+		sa = new SetupApplication(ifac);
+		sa.constructCallgraph();
 
 		for(SootClass sc : Scene.v().getApplicationClasses()) {
 			for(SootMethod sm : sc.getMethods()) {
