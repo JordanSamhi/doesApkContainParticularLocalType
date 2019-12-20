@@ -47,7 +47,7 @@ java -jar target/doesapkcontainparticularlocaltype-0.1-jar-with-dependencies.jar
 echo $?
 0
 ```
-The resulting output code can be reused in scripts to easy the decision-making.
+The resulting output code can be reused in scripts to ease a decision-making.
 
 # Built With
 
