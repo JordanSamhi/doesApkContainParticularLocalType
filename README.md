@@ -60,4 +60,4 @@ The resulting output code can be reused in scripts to easy the decision-making.
 
 ## License
 
-This project is licensed under the LGPLv2.1 License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the LGPLv2.1 License - see the [LICENSE](LICENSE) file for details
