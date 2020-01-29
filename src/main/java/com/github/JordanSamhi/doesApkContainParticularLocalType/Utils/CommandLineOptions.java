@@ -82,7 +82,7 @@ public class CommandLineOptions {
 		
 		final Option type = Option.builder(TYPE.getValue1())
 				.longOpt(TYPE.getValue0())
-				.desc(PLATFORMS.getValue2())
+				.desc(TYPE.getValue2())
 				.hasArg(true)
 				.argName(TYPE.getValue0())
 				.required(true)
