@@ -26,7 +26,6 @@ public class Main {
 
 	public static void main(String[] args) {
 
-
 		CommandLineOptions options = new CommandLineOptions(args);
 
 		String apk = options.getApk();
@@ -47,7 +46,6 @@ public class Main {
 										for (Local l : b.getLocals()) {
 											if(l.getType().toString().equals(type)) {
 												logger.info(String.format("Apk contains %s", type));
-												logger.info(String.format("-- Method: %s", b.getMethod()));
 												System.exit(1);
 											}
 										}
@@ -57,7 +55,6 @@ public class Main {
 						}
 					}
 				}));
-
 		PackManager.v().runPacks();
 		logger.warn("Apk does not contain " + type);
 		System.exit(0);
@@ -75,6 +72,7 @@ public class Main {
 		Scene.v().loadNecessaryClasses();
 	}
 
+	// Inspired by Flowdroid
 	private static boolean isSystemClass(String className) {
 		return (className.startsWith("android.") || className.startsWith("java.") || className.startsWith("javax.")
 				|| className.startsWith("sun.") || className.startsWith("org.omg.")

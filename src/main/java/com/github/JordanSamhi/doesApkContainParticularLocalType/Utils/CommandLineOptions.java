@@ -21,8 +21,7 @@ public class CommandLineOptions {
 	private static final Triplet<String, String, String> APK = new Triplet<String, String, String>("apk", "a", "Apk file");
 	private static final Triplet<String, String, String> HELP = new Triplet<String, String, String>("help", "h", "Print this message");
 	private static final Triplet<String, String, String> TYPE = new Triplet<String, String, String>("type", "t", "Type to search for in Apk");
-	private static final Triplet<String, String, String> PLATFORMS =
-			new Triplet<String, String, String>("platforms", "p", "Android platforms folder");
+	private static final Triplet<String, String, String> PLATFORMS = new Triplet<String, String, String>("platforms", "p", "Android platforms folder");
 	private static final String doesApkContainParticularLocalType = "doesApkContainParticularLocalType";
 	
 	private Options options, firstOptions;
